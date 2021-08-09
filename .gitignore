@@ -1,0 +1,4 @@
+input/
+output/
+staging/
+__pycache__/functions.cpython-38.pyc
