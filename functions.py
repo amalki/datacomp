@@ -1,6 +1,17 @@
 import csv
 import pandas as pd
+import pyodbc
 
+def sql_connect(dsn,user,password,database,table):
+    con_string = 'DSN=%s;UID=%s;PWD=%s;DATABASE=%s;' % (dsn, user, password, database)
+    cnxn = pyodbc.connect(con_string)
+    cursor = cnxn.cursor()
+    cursor.execute('SELECT * FROM '+table)
+    list = []
+    for row in cursor:
+        list += [row]
+    return list
+    
 def file_to_df(file_path): #read a file as a pandas dataframe
     df = pd.read_csv(file_path)
 
